@@ -1,6 +1,6 @@
 #include "quadratic.h"
 
-int read (double * a_ptr, double * b_ptr, double * c_ptr)
+int     read            (double * a_ptr, double * b_ptr, double * c_ptr)
 {
     printf("Enter a, b, c:\n");
 
@@ -16,7 +16,7 @@ int read (double * a_ptr, double * b_ptr, double * c_ptr)
     }
 }
 
-int solve (const double a, const double b, const double c, double * x1_ptr, double * x2_ptr)
+int     solve           (const double a, const double b, const double c, double * x1_ptr, double * x2_ptr)
 {
     if (compr_double (a, 0, 10e-10) == EQUAL)
     {
@@ -28,7 +28,7 @@ int solve (const double a, const double b, const double c, double * x1_ptr, doub
     }
 }
 
-int solveLinearEq(const double a, const double b, double * x_ptr)//solve ax+b=0
+int     solveLinearEq   (const double a, const double b, double * x_ptr)//solve ax+b=0
 {
     if (compr_double (a, 0, 10e-10) == MORE || compr_double (a, 0, 10e-10) == LESS)
     {
@@ -49,7 +49,7 @@ int solveLinearEq(const double a, const double b, double * x_ptr)//solve ax+b=0
     }
 }
 
-int solveQuadroEq(const double a, const double b, const double c, double * x1, double * x2)
+int     solveQuadroEq   (const double a, const double b, const double c, double * x1, double * x2)
 {
     double d;
     d = (b*b)-4*a*c;
@@ -74,7 +74,7 @@ int solveQuadroEq(const double a, const double b, const double c, double * x1, d
 
 }
 
-int write(const double x1, const double x2, const int flag)
+int     write           (const double x1, const double x2, const int flag)
 {
     
     switch (flag)
@@ -142,7 +142,7 @@ int write(const double x1, const double x2, const int flag)
     return 0;
 }
     
-int compr_double (const double a, const double b, const double eps)
+int     compr_double    (const double a, const double b, const double eps)
 {
     if (fabs(a-b) <= eps)
     

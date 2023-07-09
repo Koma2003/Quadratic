@@ -1,7 +1,5 @@
 #ifndef QUADRATIC_H
 #define QUADRATIC_H
-#define BAD_READ -1
-#define OK_READ 1
 
 #include <stdio.h>
 #include <math.h>
@@ -29,6 +27,7 @@ enum TYPE_OF_SOLUTION
     QUADRO_NO_ROOTS
 
 };
+
 enum TYPE_OF_COMPR
 {
     EQUAL,
@@ -36,5 +35,10 @@ enum TYPE_OF_COMPR
     LESS
 };
 
+enum TYPE_OF_READ
+{
+    BAD_READ = -1,
+    OK_READ = 1
+}
 
 #endif
