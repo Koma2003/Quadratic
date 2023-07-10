@@ -39,6 +39,6 @@ enum TYPE_OF_READ
 {
     BAD_READ = -1,
     OK_READ = 1
-}
+};
 
 #endif
