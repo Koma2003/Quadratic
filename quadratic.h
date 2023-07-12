@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <math.h>
 
-int     read            (double * a_ptr, double * b_ptr, double * c_ptr, double * eps_ptr); // Чтение вводимых коэффициентов и погрешности округления
+int     read            (double * a, double * b, double * c, double * eps); // Чтение вводимых коэффициентов и погрешности округления
 
-int     solve           (const double a, const double b, const double c, const double eps, double * x1_ptr, double * x2_ptr); // Решение уравнения
+int     solve           (const double a, const double b, const double c, const double eps, double * x1, double * x2); // Решение уравнения
 
-int     solveLinearEq   (const double a, const double b, const double eps, double * x_ptr); // Решение линейного уравнения
+int     solveLinearEq   (const double a, const double b, const double eps, double * x); // Решение линейного уравнения
 
-int     solveQuadroEq   (const double a, const double b, const double c, const double eps, double * x1_ptr, double * x2_ptr); // Решение квадратного уравнения
+int     solveQuadroEq   (const double a, const double b, const double c, const double eps, double * x1, double * x2); // Решение квадратного уравнения
 
 int     write           (const double x1, const double x2, const int flag); //Вывод ответа
 
