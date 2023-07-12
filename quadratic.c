@@ -1,36 +1,40 @@
 #include "quadratic.h"
 
-int     read            (double * a_ptr, double * b_ptr, double * c_ptr)
+int     read            (double * a_ptr, double * b_ptr, double * c_ptr, double * eps_ptr)
 {
-    printf("Enter a, b, c:\n");
+    printf("Enter coefficients of the equation a, b, c:\n"); // Ввод коэффициентов уравнения
 
     int y = scanf("%lf%lf%lf", a_ptr, b_ptr, c_ptr);
 
-    if (y != 3)
+    printf("Enter comparison error:\n"); // Ввод погрешности сравнения
+
+    int z = scanf("%lf", eps_ptr);
+
+    if ((y != 3) || (z != 1)) // Проверка на то, что коэффициенты и погрешность являются числами
     {
-    return BAD_READ;//что-то пошло не так
+    return BAD_READ; // Что-то пошло не так
     }
     else
     {
-    return OK_READ;//ok
+    return OK_READ; // Ок
     }
 }
 
-int     solve           (const double a, const double b, const double c, double * x1_ptr, double * x2_ptr)
+int     solve           (const double a, const double b, const double c, double eps, double * x1_ptr, double * x2_ptr)
 {
-    if (compr_double (a, 0, 10e-10) == EQUAL)
+    if (compr_double (a, 0, eps) == EQUAL)
     {
-        return solveLinearEq(b, c, x1_ptr);
+        return solveLinearEq(b, c, eps, x1_ptr); // Уравнение линейное
     }
     else
     {
-        return solveQuadroEq(a, b, c, x1_ptr, x2_ptr);
+        return solveQuadroEq(a, b, c, eps, x1_ptr, x2_ptr); // Уравнение квадратное
     }
 }
 
-int     solveLinearEq   (const double a, const double b, double * x_ptr)//solve ax+b=0
+int     solveLinearEq   (const double a, const double b, double eps, double * x_ptr) // Решение линейного уравнения ax+b=0
 {
-    if (compr_double (a, 0, 10e-10) == MORE || compr_double (a, 0, 10e-10) == LESS)
+    if (compr_double (a, 0, eps) == MORE || compr_double (a, 0, eps) == LESS) // Линейное уравнение имеет одно решение
     {
         *x_ptr = -b/a;
 
@@ -38,33 +42,33 @@ int     solveLinearEq   (const double a, const double b, double * x_ptr)//solve 
     }
     else
     {
-        if (compr_double (b, 0, 10e-10) == MORE || compr_double (b, 0, 10e-10) == LESS)
+        if (compr_double (b, 0, eps) == MORE || compr_double (b, 0, eps) == LESS) // Линейное уравнение не имеет решений
         {
             return LINEAR_NO_ROOT;
         }
-        else
+        else // Линейное уравнение имеет бесконечное множество решений
         {
             return LINEAR_INF_ROOTS;
         }    
     }
 }
 
-int     solveQuadroEq   (const double a, const double b, const double c, double * x1, double * x2)
+int     solveQuadroEq   (const double a, const double b, const double c, double eps, double * x1, double * x2) // Решение квадратного уравнения ax^2+bx+c=0
 {
     double d;
-    d = (b*b)-4*a*c;
+    d = (b*b)-4*a*c; // Подсчёт дискриминанта
 
-    if (compr_double (d, 0, 10e-10) == LESS)
+    if (compr_double (d, 0, eps) == LESS) // Квадратное уравнение не имеет корней
     {
         return QUADRO_NO_ROOTS;
     }
-        else if (compr_double (d, 0, 10e-10) == EQUAL)
+        else if (compr_double (d, 0, eps) == EQUAL) // Квадратное уравнение имеет один корень
     {
-        *x1 = -b/(2*a);
+        *x1 = -b/(2*a); 
 
         return QUADRO_ONE_ROOT;
     }
-    else
+    else // Квадратное уравнение имеет два корня
     {
         *x1 = (-b + sqrt(d))/(2*a);
         *x2 = (-b -sqrt(d))/(2*a);
@@ -74,7 +78,7 @@ int     solveQuadroEq   (const double a, const double b, const double c, double 
 
 }
 
-int     write           (const double x1, const double x2, const int flag)
+int     write           (const double x1, const double x2, const int flag) // Вывод ответа
 {
     
     switch (flag)
@@ -142,7 +146,7 @@ int     write           (const double x1, const double x2, const int flag)
     return 0;
 }
     
-int     compr_double    (const double a, const double b, const double eps)
+int     compr_double    (const double a, const double b, const double eps) // Сравнение 
 {
     if (fabs(a-b) <= eps)
     
