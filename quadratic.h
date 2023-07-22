@@ -14,19 +14,29 @@
         double image;
     };
     
-    struct complex_num comp_x;
+    struct complex_num comp_x1, comp_x2, coef_a, coef_b, coef_c, comp1, comp2, comp;
 
-int     read_coef       (double * a, double * b, double * c, double * eps); // reading input coefficients and rounding errors
+int     read_coef       (double * eps, struct complex_num * coef_a, struct complex_num * coef_b, struct complex_num * coef_c); // reading input coefficients and rounding errors
 
-int     solveEq         (const double a, const double b, const double c, const double eps, double * x1, double * x2, struct complex_num * comp_x); // solution of the equation
+int     solveEq         (const double eps, struct complex_num coef_a, struct complex_num coef_b, struct complex_num coef_c, struct complex_num * comp_x1, struct complex_num * comp_x2); // solution of the equation
 
-int     solveLinearEq   (const double a, const double b, const double eps, double * x); // solution of a linear equation
+int     solveLinearEq   (const double eps, struct complex_num coef_a, struct complex_num coef_b, struct complex_num * comp_x); // solution of a linear equation
 
-int     solveQuadroEq   (const double a, const double b, const double c, const double eps, double * x1, double * x2, struct complex_num * comp_x); // quadratic equation solution
+int     solveQuadroEq   (const double eps, struct complex_num coef_a, struct complex_num coef_b, struct complex_num coef_c, struct complex_num * comp_x1, struct complex_num * comp_x2); // quadratic equation solution
 
-int     write_ans       (const double x1, const double x2, const int type_of_solution, struct complex_num comp_x); // response output
+int     write_ans       (const int type_of_solution, struct complex_num comp_x1, struct complex_num comp_x2); // response output
 
 int     compr_double    (const double a, const double b, const double eps); // comparison
+
+int     sum_complex_num (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp); // sum complex numbers
+
+int     sub_complex_num (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp); // subtraction complex numbers
+
+int     mult_comp_num   (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp); // multiplication complex numbers
+
+int     divis_comp_num  (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp); // dividing complex numbers
+
+int     Sq_root_comp_num (struct complex_num comp, struct complex_num * comp1, struct complex_num * comp2); // the square root of a complex number
 
 enum TYPE_OF_SOLUTION // types of solutions to equations
 {
@@ -36,8 +46,9 @@ enum TYPE_OF_SOLUTION // types of solutions to equations
     LINEAR_INF_ROOTS,
     QUADRO_ONE_ROOT,
     QUADRO_TWO_ROOTS,
-    QUADRO_COMPLEX_ROOTS
-
+    QUADRO_COMPLEX_ROOTS,
+    LINEAR_COMPLEX_ONE_ROOT,
+    QUADRO_COMPLEX_TWO_ROOTS
 };
 
 enum TYPE_OF_COMPR // types of comparison
