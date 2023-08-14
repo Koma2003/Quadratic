@@ -24,7 +24,7 @@ int mult_comp_num   (struct complex_num comp1, struct complex_num comp2, struct 
     return 0;
 }
 
-int divis_comp_num (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp_ptr) // division of complex numbers
+int div_comp_num (struct complex_num comp1, struct complex_num comp2, struct  complex_num * comp_ptr) // division of complex numbers
 {
     comp_ptr->real = ((comp1.real*comp2.real + comp1.image*comp2.image)/(comp2.real*comp2.real + comp2.image*comp2.image));
     comp_ptr->image = (((-comp1.real*comp2.image) + comp1.image*comp2.real)/(comp2.real*comp2.real + comp2.image*comp2.image));
@@ -32,7 +32,7 @@ int divis_comp_num (struct complex_num comp1, struct complex_num comp2, struct  
     return 0;
 }
 
-int Sq_root_comp_num (struct complex_num comp, struct complex_num * comp1_ptr, struct complex_num * comp2_ptr) // multiplication of complex numbers
+int sq_root_comp_num (struct complex_num comp, struct complex_num * comp1_ptr, struct complex_num * comp2_ptr) // multiplication of complex numbers
 {
     comp1_ptr->real = (sqrt((sqrt(comp.real*comp.real + comp.image*comp.image) + comp.real)/2));
     comp1_ptr->image = ((fabs(comp.image))/(comp.image))*(sqrt((sqrt(comp.real*comp.real + comp.image*comp.image) - comp.real)/2));
@@ -43,3 +43,14 @@ int Sq_root_comp_num (struct complex_num comp, struct complex_num * comp1_ptr, s
     return 0;
 }
 
+int compr_complex_num_zero  (struct complex_num comp) // comparsion complex number with zero
+{
+     if ((compr_double (comp.real, 0) != EQUAL) || (compr_double (comp.image, 0) != EQUAL))
+    {  
+        return NOT_ZERO;
+    }
+    else 
+    {
+        return ZERO;
+    }
+}

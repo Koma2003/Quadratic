@@ -12,8 +12,8 @@ int main()
 
         return -1;
     }
-
-    type_of_solution = solveEq(coef_a, coef_b, coef_c, &comp_x1, &comp_x2);
+    
+    type_of_solution = solve_eq(coef_a, coef_b, coef_c, &comp_x1, &comp_x2);
 
     write_ans (type_of_solution, comp_x1, comp_x2); // response output
 
